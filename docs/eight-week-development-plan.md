@@ -117,7 +117,7 @@ Use this routine for each weekly assignment. Branch = your work area. Commit = a
 
 #### 1 Find your work for the week
 
-Every Monday, open the calendar in Section 3, then read your assigned ticket below it. Check Build, Pass checks, dependencies, hours and Friday due date. Ryan confirms unclear requirements before you start. Open the matching GitHub Issue and mark it In progress.
+Open Section 3 each week and read your assigned ticket: Build, Pass checks, dependencies, hours and Friday due date. For the first task, wait for Ryan to hand over the working app, sample data and agreed types from G01/G02. Open the matching issue and mark it In progress.
 
 #### 2 Open the app on your computer
 
@@ -190,9 +190,9 @@ After merge, verify the result on shared staging. Add the merged PR, tested URL,
 
 #### Shared setup Ryan handles
 
-Ryan configures GitHub CI, branch/review rules, Vercel previews and later the separate Render API/database. Ibrahim follows the configured workflow and maintains tests for his changes. A UI preview that needs an unmerged API must use the matching local/isolated backend. Neither person points Garage at RRC production.
+Ryan owns CI, hosting settings, environment variables, secrets, database/auth administration and migrations. Ibrahim builds UI/client code and tests; he requests configuration changes through the issue. Ryan configures test pipelines/accounts. The first dashboard uses mocks; Render/Supabase setup comes later.
 
-If main changes while you work: from a clean feature branch run git fetch origin, then git merge origin/main. Ask Ryan for help with conflicts; do not discard or force-push to hide them. Recheck and push the updated branch.
+Use a separate branch and frontend preview per feature; merge only ready work. A merge does not rewrite another local branch. Agree shared types first; use mocks to avoid shared-data interference. When syncing main, shared files can still conflict: git fetch origin, then git merge origin/main. Ryan helps resolve conflicts and matching-API needs.
 
 ## 3 Calendar and weekly milestones
 
@@ -375,7 +375,7 @@ Ibrahim  |  6h  |  Due Dec 11  |  Needs G15, G08, G09, G11, G14
 
 Ibrahim  |  5h  |  Due Dec 11  |  Needs G16
 
-**Build** Automate sign-in, truck, mileage, multi-item service, status/history and refresh against a disposable test backend. Run it in CI with isolated accounts/dates.
+**Build** Write browser tests for sign-in, truck, mileage, service, status/history and refresh. Ryan supplies the disposable backend/accounts and configures CI/secrets; Ibrahim writes and runs the tests.
 
 **Pass checks** Run twice without leftover state; include a failed save. Failures make CI red. Tests never write to shared staging; evidence contains no private tokens.
 
